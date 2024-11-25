@@ -109,8 +109,10 @@ git clone https://github.com/TheToriqul/k8s-edit-pod.git
 cd k8s-edit-pod
 ```
 
-2. Create the initial pod:```bash
-kubectl run my-nginx --image=nginx:1.26 --port=80```
+2. Create the initial pod:
+```bash
+kubectl run my-nginx --image=nginx:1.26 --port=80
+```
 
 3. Verify the pod creation:
 ```bash
