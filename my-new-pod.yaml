@@ -1,0 +1,113 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: "2024-11-25T17:06:46Z"
+  labels:
+    run: my-nginx
+  name: my-nginx
+  namespace: default
+  resourceVersion: "6723"
+  uid: 3e6188d6-9be5-4473-aba5-8d4e6c509ae8
+spec:
+  containers:
+  - name: nginx
+    image: nginx:latest
+    imagePullPolicy: IfNotPresent
+    name: my-nginx
+    ports:
+    - containerPort: 80
+      protocol: TCP
+    resources: {}
+    terminationMessagePath: /dev/termination-log
+    terminationMessagePolicy: File
+    volumeMounts:
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      name: kube-api-access-rx97t
+      readOnly: true
+  dnsPolicy: ClusterFirst
+  enableServiceLinks: true
+  nodeName: cluster-66dbf2c46722fdb9097e9dbe-1kv-worker-1
+  preemptionPolicy: PreemptLowerPriority
+  priority: 0
+  restartPolicy: Always
+  schedulerName: default-scheduler
+  securityContext: {}
+  serviceAccount: default
+  serviceAccountName: default
+  terminationGracePeriodSeconds: 30
+  tolerations:
+  - effect: NoExecute
+    key: node.kubernetes.io/not-ready
+    operator: Exists
+    tolerationSeconds: 300
+  - effect: NoExecute
+    key: node.kubernetes.io/unreachable
+    operator: Exists
+    tolerationSeconds: 300
+  volumes:
+  - name: kube-api-access-rx97t
+    projected:
+      defaultMode: 420
+      sources:
+      - serviceAccountToken:
+          expirationSeconds: 3607
+          path: token
+      - configMap:
+          items:
+          - key: ca.crt
+            path: ca.crt
+          name: kube-root-ca.crt
+      - downwardAPI:
+          items:
+          - fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.namespace
+            path: namespace
+status:
+  conditions:
+  - lastProbeTime: null
+    lastTransitionTime: "2024-11-25T17:06:48Z"
+    status: "True"
+    type: PodReadyToStartContainers
+  - lastProbeTime: null
+    lastTransitionTime: "2024-11-25T17:06:46Z"
+    status: "True"
+    type: Initialized
+  - lastProbeTime: null
+    lastTransitionTime: "2024-11-25T17:06:48Z"
+    status: "True"
+    type: Ready
+  - lastProbeTime: null
+    lastTransitionTime: "2024-11-25T17:06:48Z"
+    status: "True"
+    type: ContainersReady
+  - lastProbeTime: null
+    lastTransitionTime: "2024-11-25T17:06:46Z"
+    status: "True"
+    type: PodScheduled
+  containerStatuses:
+  - containerID: containerd://a5ddf23cb77f140cc26c504f286a311438d9b614410fa5561fe760aefac3aae2
+    image: docker.io/library/nginx:1.26
+    imageID: docker.io/library/nginx@sha256:43d396487b4b924c47fa5823678e7e99f8241eda2394afd8f4fc8f3c286c2d5e
+    lastState: {}
+    name: my-nginx
+    ready: true
+    restartCount: 0
+    started: true
+    state:
+      running:
+        startedAt: "2024-11-25T17:06:47Z"
+    volumeMounts:
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      name: kube-api-access-rx97t
+      readOnly: true
+      recursiveReadOnly: Disabled
+  hostIP: 10.62.9.29
+  hostIPs:
+  - ip: 10.62.9.29
+  phase: Running
+  podIP: 10.42.2.4
+  podIPs:
+  - ip: 10.42.2.4
+  qosClass: BestEffort
+  startTime: "2024-11-25T17:06:46Z"
